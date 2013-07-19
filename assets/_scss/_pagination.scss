@@ -1,0 +1,99 @@
+%pagination {
+	margin-top: $heading-margin;
+
+	ul {
+		@include clearfix;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	a {
+		display: block;
+	}
+
+	[rel="prev"] {
+		float: left;
+		text-align: left;
+	}
+
+	[rel="next"] {
+		float: right;
+		text-align: right;
+	}
+}
+
+.pagination {
+	@extend %pagination;
+
+	a {
+		padding: .1em 1em;
+		color: $fg;
+		background-color: mix($fg, $bg, 20%);
+		@if $font-stack-body == $sans-serif {
+			text-transform: uppercase;
+		} @else {
+			font-weight: bold;
+		}
+
+		&:hover {
+			color: $bg;
+			background-color: $accent;
+		}
+	}
+
+	[rel="prev"]::before,
+	[rel="next"]::after {
+		font-family: $font-stack-code;
+	}
+
+	[rel="prev"]::before {
+		margin-right: .3em;
+		content: "\00AB";
+	}
+
+	[rel="next"]::after {
+		margin-left: .3em;
+		content: "\00BB";
+	}
+}
+
+.single-pagination {
+	@extend %pagination;
+	@extend .wrapper;
+	padding: $gap;
+
+	a span {
+		@include inline-block;
+		vertical-align: bottom;
+		width: 10em;
+		white-space: nowrap;
+		-o-text-overflow: ellipsis;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+
+	li:first-child:last-child a span {
+		width: auto;
+		white-space: normal;
+		-o-text-overflow: none;
+		text-overflow: none;
+	}
+
+	[rel="prev"]::before,
+	[rel="next"]::after {
+		text-transform: uppercase;
+		color: $fg;
+		font-weight: bold;
+	}
+
+	[rel="prev"]::before {
+		content: "Older :";
+		margin-right: .4em;
+	}
+
+	[rel="next"]::after {
+		content: ": Newer";
+		margin-left: .4em;
+	}
+}

@@ -1,0 +1,65 @@
+@media print {
+    body {
+        color: #000;
+        background-color: #fff;
+    }
+
+    a,
+    a:link,
+    a:visited {
+        color: #000;
+        text-decoration: none;
+
+        &[href^="http"]::after {
+            content: "(" attr(href) ")";
+        }
+    }
+
+    [role="banner"],
+    [role="complementary"],
+    [role="contentinfo"],
+    article footer,
+    .share,
+    .pagination,
+    .single-pagination,
+    #posts-in-some-categories {
+        display: none;
+    }
+
+    article header {
+        text-align: center;
+
+        h2 {
+            margin-top: 1em;
+        }
+
+        .meta-info,
+        .meta-info a {
+            color: #999;
+        }
+    }
+
+    pre {
+        border: 1px solid #000;
+        background-color: #fff;
+    }
+
+    pre code,
+    pre code span {
+        color: #000 !important;
+    }
+
+    hr {
+        color: #ccc;
+        border-color: #ccc;
+
+        &::after {
+            background-color: #fff;
+        }
+    }
+
+    blockquote,
+    blockquote cite {
+        color: #666;
+    }
+}

@@ -1,0 +1,84 @@
+# Site
+title: amane
+description: My life memories.
+url: http://localhost:4000
+lang: ja
+locale: ja_JP
+permalink: /:year/:month/:day/:title
+paginate: 5
+since: 2013
+pygments: true
+markdown: redcarpet
+auto: true
+
+# Metadata
+microdata: true
+ogp: true
+twitterCard: true
+fbAdminID: null
+
+# Author
+author:
+  name: author
+  email: author@mail.com
+  url: http://twitter.com/author
+  elsewhere:
+    github: author
+    twitter: author
+    facebook: author
+    googleplus: author
+    pinterest: author
+    dribbble: author
+    flickr: author
+
+# Share
+share:
+  button: true
+  twitter: author
+  facebook: true
+  googleplus: true
+  pocket: true
+  hatena: true
+
+# Path
+path:
+  asset: /assets
+  atom: /atom.xml
+  logo: /assets/images/logo.png
+  thumbnail: /assets/images/thumbs
+
+# Repository
+repository:
+  local: ~/.jekyll/:url
+  remote: https://github.com/author/author.github.io.git
+
+# Comments
+comments:
+  provider: disqus
+  disqus:
+    short_name: 123
+  livefyre:
+    site_id: 123
+  intensedebate:
+    account: 123abc
+  facebook:
+    appid: 123
+    num_posts: 5
+    width: 580
+    colorscheme: light
+
+# Analytics
+analytics:
+  provider: google
+  google:
+    tracking_id: 'UA-123-1'
+  getclicky:
+    site_id:
+  mixpanel:
+    token: '_MIXPANEL_TOKEN_'
+  piwik:
+    baseURL: 'myserver.tld/piwik'
+    idsite: '1'
+
+# Exclude Files
+exclude: ["config.rb", "Gemfile", "Rakefile", "README.md", "CHANGELOG.md", "LICENSE"]

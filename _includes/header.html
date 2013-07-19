@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="{{ site.lang }}"{% if site.share.facebook %} xmlns:fb="http://ogp.me/ns/fb#"{% endif %}{% if site.microdata %} itemscope itemtype="http://schema.org/Blog"{% endif %}>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+	<title>{% if page.title != null %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+	<link href="{{ site.path.asset }}/css/style.css" rel="stylesheet" media="all">
+	<link href="{{ site.path.atom }}" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+	<link rel="shortcut icon" href="{{ site.baseurl }}favicon.ico">
+	<link rel="apple-touch-icon" href="{{ site.baseurl }}apple-touch-icon.png">
+	<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+{% if site.microdata %}
+	<!-- Microdata -->
+	<meta content="{{ site.title }}" itemprop="name">
+	<meta content="{{ site.description }}" itemprop="description">
+	{% if site.path.logo %}<meta content="{{ site.path.logo }}" itemprop="image">{% endif %}
+	<link href="{{ site.url }}" itemprop="url">
+{% endif %}{% if site.ogp %}
+	<!-- Open Graph Protocol -->
+	<meta property="og:title" content="{{ site.title }}">
+	<meta property="og:type" content="blog">
+	<meta property="og:url" content="{{ site.url }}">
+	{% if site.path.logo %}<meta property="og:image" content="{{ site.url }}{{ site.path.asset }}/images/{{ site.path.logo }}">{% endif %}
+	<meta property="og:description" content="{{ site.description }}">
+	<meta property="og:locale" content="{{ site.locale }}">
+	<meta property="og:site_name" content="{{ site.title }}">
+	<meta prefix="fb: http://ogp.me/ns/fb#" property="fb:admins" content="{{ site.fbAdminID }}">
+{% endif %}{% if site.twitterCard and site.author.social.twitter %}
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="@{{ site.author.social.twitter }}">
+{% endif %}
+{% include analytics.html %}
+</head>
+<body>
+	<header role="banner">
+		<div class="wrapper">
+			<h1><a href="{{ site.baseurl }}">{{ site.title }}</a></h1>
+			<nav>
+				<ul>
+					<li{% if page.url == "/index.html" %} class="active"{% endif %}><a href="/">Home</a></li>
+					<li{% if page.url == "/about.html" %} class="active"{% endif %}><a href="/about.html">About</a></li>
+					<li><a href="/sitemap.xml">SiteMap</a></li>
+					<li><a href="{{ site.path.atom }}">Feed</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<div class="content"{% if page.type != "single" %} role="main"{% endif %}>

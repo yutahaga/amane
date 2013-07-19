@@ -1,0 +1,34 @@
+---
+layout: nil
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  {% if page.group == 'tag' %}
+  <title>Tag: {{ page.tag | xml_escape }} - {{ site.title | xml_escape }}</title>
+  {% elsif page.group == 'category' %}
+  <title>Category: {{ page.category | xml_escape }} - {{ site.title | xml_escape }}</title>
+  {% else %}
+  <title>{{ site.title | xml_escape }}</title>
+  {% endif %}
+  {% capture atom_path %}{% if page.group == 'tag' %}tag/{{ page.tag }}/{% elsif page.group == 'category' %}category/{{ page.category }}/{% endif %}{% endcapture %}
+  <link href="{{ site.url }}/{{ atom_path }}atom.xml" rel="self"/>
+  <link href="{{ site.url }}"/>
+  <updated>{{ site.time | date_to_xmlschema }}</updated>
+  <id>{{ site.url }}</id>
+  <author>
+    <name>{{ site.author.name | xml_escape }}</name>
+    <email>{{ site.author.email }}</email>
+  </author>
+  <subtitle type="text">{{ site.description | xml_escape }}</subtitle>
+  {% for post in page.posts %}
+  <entry>
+    <title>{{ post.title | xml_escape }}</title>
+    <link href="{{ site.url }}{{ post.url }}"/>
+    <pubDate>{{ post.date | date_to_xmlschema }}</pubDate>
+    {% if post.update %}<updated>{{ post.update | date_to_xmlschema }}</updated>{% endif %}
+    <id>{{ site.url }}{{ post.id }}</id>
+    <content type="html">{{ post.content | xml_escape }}</content>
+    {% if post.thumbnail %}<media:thumbnail xmlns:media="{{ site.url }}{{ site.path.thumbnail }}/{{ post.thumbnail }}" />{% endif %}
+  </entry>
+  {% endfor %}
+</feed>

@@ -1,0 +1,15 @@
+$jp-serif: "ヒラギノ明朝 ProN W3", "ヒラギノ明朝 ProN", "Hiragino Mincho ProN", "ヒラギノ明朝 Pro W3", "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "HG明朝E", "ＭＳ Ｐ明朝", "MS PMincho";
+$jp-maru-sans-serif: "ヒラギノ丸ゴ ProN W4", "ヒラギノ丸ゴ ProN", "Hiragino Maru Gothic ProN", "ヒラギノ丸ゴ Pro W4", "ヒラギノ丸ゴ Pro", "Hiragino Maru Gothic Pro", "ヒラギノ角ゴ ProN W3", "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", "HG丸ｺﾞｼｯｸM-PRO", "HGMaruGothicMPRO", "ＭＳ Ｐゴシック", "MS P Gothic";
+$jp-kaku-sans-serif: "ヒラギノ角ゴ ProN W3", "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "MS P Gothic";
+$jp-sans-serif: $jp-kaku-sans-serif;
+
+$use-local-font: true;
+$local-serif: $jp-serif;
+$local-sans-serif: $jp-sans-serif;
+
+$serif: "Georgia", "Times", "Times New Roman", if($use-local-font, unquote("#{$local-serif} ,"), null) "serif";
+$sans-serif: "Helvetica Neue", "Helvetica", "Calibri", if($use-local-font, unquote("#{$local-sans-serif} ,"), null) "sans-serif";
+$monospace: "Menlo", "Consolas", "Courier New", "Courier", "Liberation Mono", monospace;
+
+$font-stack-body: $serif;
+$font-stack-code: $monospace;

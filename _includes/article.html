@@ -1,0 +1,102 @@
+{% capture has_category %}{% if page.category or page.categories and page.categories.size > 0 %}true{% endif %}{% endcapture %}
+{% capture has_tag %}{% if page.tags and page.tags.size > 0 %}true{% endif %}{% endcapture %}
+<article{% if type == "single" %} role="main"{% elsif site.microdata %} itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting" itemref="copyright"{% endif %}>
+	<header>
+	{% if site.microdata %}
+		{% if page.thumbnail %}
+		<meta content="{{ site.path.thumbnail }}/{{ page.thumbnail }}" itemprop="image">
+		{% elsif site.path.logo %}
+		<meta content="{{ site.path.logo }}" itemprop="image">
+		{% endif %}
+	{% endif %}
+		<h2{% if site.microdata %} itemprop="name"{% endif %}>{% if type != "single" %}<a rel="bookmark" href="{{ site.url}}{{ page.url }}"{% if site.microdata %} itemprop="url"{% endif %}>{{ page.title }}</a>{% else %}{{ page.title }}{% endif %}</h2>
+		{% if page.date or page.category == "true" %}
+		<ul class="meta-info">
+			{% if has_category == "true" %}
+			<li class="categories">
+				in
+				<ul>
+					{% if page.category %}
+					<li><a rel="category" href="/category{% if site.safe %}.html#ref-{% else %}/{% endif %}{{ page.category }}">{{ page.category }}</a></li>
+					{% else %}
+					{% for category in page.categories %}
+					<li><a rel="category" href="/category{% if site.safe %}.html#ref-{% else %}/{% endif %}{{ category }}">{{ category }}</a></li>
+					{% endfor %}
+					{% endif %}
+				</ul>
+			</li>
+			{% endif %}
+			{% if page.date %}
+			<li class="date">
+				on <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: '%b' }} {{ page.date | date: '%d' | ordinal }}, {{ page.date | date: '%Y at %H:%M %p' }}</time>
+			</li>
+			{% endif %}
+		</ul>
+		{% endif %}
+	</header>
+
+	<div class="article-body" {% if site.microdata %} itemprop="articleBody"{% endif %}>
+	{% assign page_description = null %}
+	{% assign page_content = null %}
+	{% capture raw_content %}
+	{% if type == "single" %}
+		{{ content }}
+	{% else %}
+		{{ page.content }}
+	{% endif %}
+	{% endcapture %}
+	{% if page.description %}
+		{% capture page_description %}
+		<p itemprop="description">
+{{ page.description }}
+		</p>
+		{% endcapture %}
+	{% elsif site.safe == false %}
+		{% capture page_has_description %}{{ raw_content | has_description }}{% endcapture %}
+		{% if page_has_description == "true" %}
+			{% capture page_description %}
+		<div itemprop="description">
+{{ raw_content | description }}
+		</div>
+			{% endcapture %}
+		{% endif %}
+	{% endif %}
+	{% capture page_content %}
+	{% if page_description == null or site.safe %}
+{{ raw_content }}
+	{% else %}
+{{ raw_content | more }}
+	{% endif %}
+	{% endcapture %}
+	{% if page.thumbnail %}
+		<figure class="thumbnail{% if page.thumbnail_pos == "left" %} pull-left{% elsif page.thumbnail_pos == "right" %} pull-right{% endif %}">
+			<img src="{{ site.path.thumbnail }}/{{ page.thumbnail }}" alt="{{ page.title | xml_escape }}">
+		</figure>
+	{% endif %}
+	{% if type == "single" %}
+{{ page_description }}
+{{ page_content }}
+	{% elsif page_description %}
+{{ page_description }}
+	{% else %}
+{{ page_content }}
+	{% endif %}
+	{% if type == "single" %}
+	{% include share.html %}
+	{% endif %}
+	</div>
+
+	{% if type == "single" and has_tag == "true" %}
+	<footer>
+		Tags:
+		<ul class="tags">
+			{% for tag in page.tags %}
+			<li><a rel="tag" href="/tag{% if site.safe %}.html#ref-{% else %}/{% endif %}{{ tag }}">{{ tag }}</a></li>
+			{% endfor %}
+		</ul>
+	</footer>
+	{% endif %}
+</article>
+{% assign page_description = null %}
+{% assign page_content = null %}
+{% assign page_has_description = false %}

@@ -1,0 +1,19 @@
+---
+layout: page
+title: Categories
+---
+<ul class="table-of-contents">
+	{% for category in site.categories %}
+	<li><a href="#ref-{{ category | first | slugize }}" title="{{ category | last | size }} posts">{{ category | first }}</a></li>
+	{% endfor %}
+</ul>
+{% for category in site.categories %}
+<h3 id="ref-{{ category | first | slugize }}">{{ category | first }}</h3>
+<ul>
+{% for post in category[1] %}
+	{% if post.title != null %}
+	<li><a href="{{ post.url }}">{{ post.title }}</a></li>
+	{% endif %}
+{% endfor %}
+</ul>
+{% endfor %}

@@ -1,0 +1,7 @@
+@mixin expand-block($font-size: 1em) {
+    $margin-vertical: em($default-margin / $font-size);
+    $margin-horizon: sqrt($margin-vertical);
+
+	margin: $margin-vertical -#{$margin-horizon} 0;
+	padding: $margin-vertical #{$margin-horizon};
+}

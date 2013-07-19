@@ -1,0 +1,14 @@
+.well {
+    @include border-radius(6px);
+    padding: 1em em($golden-ratio);
+    background-color: mix($fg, $bg, 5%);
+}
+
+.table-of-contents {
+    @extend .well;
+    list-style-position: inside;
+
+    a {
+        text-decoration: none;
+    }
+}

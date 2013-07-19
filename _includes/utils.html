@@ -1,0 +1,55 @@
+<form action="https://www.google.co.jp/search" role="search" _lpchecked="1">
+	{% comment %}<div class="btn-close"></div>{% endcomment %}
+	<div class="wrapper">
+		<div class="box">
+			<input type="search"  name="q" placeholder="Keywords">
+			<input type="submit" value="&#61442;">
+			<input type="hidden" name="q" value="site:{{ site.url }}">
+		</div>
+		{% comment %}
+		<p class="help">
+			Press <strong>return</strong> to search. Press <strong>Esc</strong> to cancel.
+		</p>
+		{% endcomment %}
+	</div>
+</form>
+
+<nav id="nav-latest-entries">
+	<h2>Latest Entries</h2>
+	<ol>
+	{% for post in site.posts limit: 5 %}
+		<li><a href="{{ post.url }}/">{{ post.title }}</a><span>{{ post.date | date: '%b' }} {{ post.date | date: '%d' | ordinal }}</span></li>
+	{% endfor %}
+	</ol>
+</nav>
+
+<nav id="nav-categories">
+	<h2>Categories</h2>
+	<ul>
+		{% for category in site.categories %}
+		<li><a href="/category{% if site.safe %}.html#ref-{% else %}/{% endif %}{{ category | first | slugize }}" title="{{ category | last | size }} posts">{{ category | first }}</a></li>
+		{% endfor %}
+	</ul>
+</nav>
+
+<nav id="nav-tags">
+	<h2>Tags</h2>
+	<ul>
+		{% for tag in site.tags %}
+		<li style="font-size: {{ tag | last | size | times: 100 | divided_by: site.tags.size | times: 3 | plus: 80 }}%"><a href="/tag{% if site.safe %}.html#ref-{% else %}/{% endif %}{{ tag | first }}" title="{{ tag | last | size }} posts">{{ tag | first }}</a></li>
+		{% endfor %}
+	</ul>
+</nav>
+
+<nav id="nav-archives">
+	<h2>Monthly Archives</h2>
+	<ol>
+	{% for post in site.posts %}
+		{% capture month %}{{ post.date | date: '%m%Y' }}{% endcapture %}
+		{% capture nmonth %}{{ post.next.date | date: '%m%Y' }}{% endcapture %}
+		{% if month != nmonth %}
+		<li><a href="/archives{% if site.safe %}.html#{{ post.date | date: '%Y-%m' }}{% else %}/{{ post.date | date: '%Y/%m' }}/{% endif %}">{{ post.date | date: '%Y-%m' }}</a></li>
+		{% endif %}
+	{% endfor %}
+	</ol>
+</nav>

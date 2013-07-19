@@ -1,0 +1,8 @@
+{% assign type = "group" %}
+{% if paginator.posts %}{% assign posts = paginator.posts %}
+{% else if page.posts %}{% assign posts = page.posts %}
+{% else %}{% assign posts = site.posts %}{% endif %}
+{% for page in posts %}
+{% include article.html %}
+{% endfor %}
+{% include pagination.html %}

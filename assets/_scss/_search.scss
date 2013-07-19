@@ -1,0 +1,51 @@
+[role="search"] {
+	$blur-color: mix($fg, $bg, 40%);
+
+	.box {
+		@include inline-block;
+		margin-top: $primary-heading-margin;
+		position: relative;
+		font-size: em(18/16);
+		width: 100%;
+	}
+
+	[type="search"] {
+		@include box-sizing(border-box);
+		padding: .5em 3em .5em 1em;
+		display: block;
+		width: 100%;
+		border: 5px solid darken($bg, 10%);
+		background-color: $bg;
+		height: 3em;
+		outline: 0;
+		color: $blur-color;
+
+		&:focus {
+			color: $fg;
+			background-color: lighten($bg, 5%);
+			border-color: lighten($bg, 5%);
+		}
+
+		@include placeholder {
+			color: $blur-color;
+			font-style: italic;
+		}
+	}
+
+	[type="submit"] {
+		@include icon-FontAwesome;
+		padding: .5em 1em;
+		height: 3em;
+		position: absolute;
+		top: 0;
+		right: 0;
+		box-sizing: border-box;
+		background-color: transparent;
+		border: 0;
+		color: $blur-color;
+	}
+
+	[type="search"]:focus + [type="submit"] {
+		color: $fg;
+	}
+}

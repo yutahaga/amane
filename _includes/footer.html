@@ -1,0 +1,50 @@
+	</div>
+
+	<aside role="complementary">
+		<div class="wrapper">
+		{% include utils.html %}
+		</div>
+	</aside>
+
+	<footer role="contentinfo">
+		<div class="wrapper">
+			<section class="elsewhere">
+				<ul>
+					{% if site.author.elsewhere.facebook %}
+					<li><a href="https://www.facebook.com/{{ site.author.elsewhere.facebook }}">Facebook</a></li>
+					{% endif %}
+					{% if site.author.elsewhere.twitter %}
+					<li><a href="https://twitter.com/{{ site.author.elsewhere.twitter }}">Twitter</a></li>
+					{% endif %}
+					{% if site.author.elsewhere.googleplus %}
+					<li><a href="https://plus.google.com/{{ site.author.elsewhere.googleplus }}">Google+</a></li>
+					{% endif %}
+					{% if site.author.elsewhere.github %}
+					<li><a href="https://github.com/{{ site.author.elsewhere.github }}">Github</a></li>
+					{% endif %}
+					{% if site.author.elsewhere.pinterest %}
+					<li><a href="http://pinterest.com/{{ site.author.elsewhere.pinterest }}/">Pinterest</a></li>
+					{% endif %}
+					{% if site.author.elsewhere.dribbble %}
+					<li><a href="http://dribbble.com/{{ site.author.elsewhere.dribbble }}">Dribbble</a></li>
+					{% endif %}
+					{% if site.author.elsewhere.flickr %}
+					<li><a href="http://www.flickr.com/photos/{{ site.author.elsewhere.flickr }}">Flickr</a></li>
+					{% endif %}
+				</ul>
+			</section>
+
+			<p id="copyright">
+				&#169; {{ site.since }}
+				<span{% if site.microdata %} itemprop="author" itemscope itemtype="http://schema.org/Person"{% endif %}><a rel="author" href="{{ site.author.url }}"{% if site.microdata %} itemprop="url"{% endif %}><b{% if site.microdata %} itemprop="name"{% endif %}>{{ site.author.name }}</b></a></span>,
+				all rights reserved.
+			</p>
+		</div>
+	</footer>
+
+	{% comment %}
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	{% endcomment %}
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+{% if page.share != false %}
+<div class="share">
+<ul>
+
+{% if site.share.twitter %}
+<li>
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="{{ site.share.twitter }}" data-lang="{{ site.lang }}" data-count="vertical">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+</li>
+{% endif %}
+
+{% if site.share.facebook %}
+<li>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/{{ site.locale }}/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <fb:like href="{{ site.url }}{{ page.url }}" send="false" layout="box_count" width="70" show_faces="true"></fb:like>
+</li>
+{% endif %}
+
+{% if site.share.pocket %}
+<li>
+    <a data-pocket-label="pocket" data-pocket-count="vertical" class="pocket-btn" data-lang="{{ site.lang }}"></a>
+    <script>!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+</li>
+
+{% endif %}
+
+{% if site.share.googleplus %}
+<li>
+    <g:plusone size="tall"></g:plusone>
+    <script>
+      window.___gcfg = {lang: '{{ site.lang }}'};
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
+</li>
+{% endif %}
+
+{% if site.share.hatena %}
+<li>
+    <a href="http://b.hatena.ne.jp/entry/{{ site.url }}{{ page.url }}" class="hatena-bookmark-button" data-hatena-bookmark-title="pagetitle" data-hatena-bookmark-layout="vertical-balloon" data-hatena-bookmark-lang="{{ site.lang }}"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" width="20" height="20" /></a><script src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</li>
+{% endif %}
+
+</ul>
+</div>
+{% endif %}

@@ -1,0 +1,12 @@
+_site/*
+_drafts/*
+
+config.rb
+
+Thumbs.db
+.DS_Store
+
+!.gitkeep
+
+.rbenv-version
+.rvmrc

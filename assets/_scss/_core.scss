@@ -1,0 +1,452 @@
+// Base
+html {
+	font-family: sans-serif;
+	font-size: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+
+	@include mq-middle {
+		font-size: em(18/16);
+	}
+
+	@include mq-xlarge {
+		font-size: em(21/16);
+	}
+}
+
+body {
+	margin: 0;
+	line-height: $default-line-height;
+	color: $fg;
+	background-color: $bg;
+	font-family: $font-stack-body;
+}
+
+// Links
+a {
+	color: $link;
+	background-color: transparent;
+	text-decoration: none;
+
+	&:visied {
+		color: $visited;
+	}
+
+	&:focus {
+		color: $focus;
+		outline: 1px dotted $focus;
+	}
+
+	&:active {
+		outline: 0;
+	}
+
+	&:hover {
+		color: $hover;
+		outline: 0;
+	}
+
+	section > p &,
+	article > p &,
+	.article-body & {
+		text-decoration: underline;
+	}
+
+	article > header > h2 & {
+		color: $accent;
+
+		&:hover {
+			color: $fg;
+		}
+	}
+}
+
+// HTML5 display definitions
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+	display: block;
+}
+
+audio,
+canvas,
+video {
+	display: inline-block;
+}
+
+audio:not([controls]) {
+	display: none;
+	height: 0;
+}
+
+[hidden] {
+	display: none;
+}
+
+// Heading
+@mixin heading ($ratio, $margin) {
+	margin: ($margin / $ratio) 0 0 0;
+	line-height: $heading-line-height;
+	font-size: em($ratio);
+}
+
+h1 {
+	@include heading($h1-ratio, $default-margin);
+}
+
+h2 {
+	@include heading($h2-ratio, $primary-heading-margin);
+}
+
+h3 {
+	@include heading($h3-ratio, $heading-margin);
+}
+
+h4 {
+	@include heading($h4-ratio, $heading-margin);
+}
+
+h5 {
+	@include heading($h5-ratio, $heading-margin);
+}
+
+h6 {
+	@include heading($h6-ratio, $heading-margin);
+}
+
+// Typography
+p {
+  @include default-margin;
+
+  h3 + &,
+  h4 + &,
+  h5 + &,
+  h6 + & {
+    @include mini-margin;
+  }
+}
+
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+
+b,
+strong,
+em {
+    font-weight: bold;
+}
+
+strong {
+	border-bottom: 1px dashed $fg;
+}
+
+em {
+	font-style: normal;
+}
+
+dfn {
+    font-style: italic;
+}
+
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+}
+
+mark {
+    background: #ff0;
+    color: #000;
+}
+
+code,
+kbd,
+var,
+samp {
+    font-family: $font-stack-code;
+    font-size: 1em;
+}
+
+code {
+	@include border-radius(3px);
+	padding: 1px .3em;
+	color: $accent;
+	background-color: lighten($bg, 5%);
+}
+
+pre {
+	@include expand-block;
+	@include border-radius(6px);
+    white-space: pre-wrap;
+	background-color: darken($bg, 3%);
+
+	> code {
+		padding: 0;
+		color: $fg;
+		background-color: transparent;
+	}
+}
+
+cite {
+	font-style: normal;
+}
+
+q {
+	quotes: none;
+
+	&::before {
+		content: "\300c";
+	}
+
+	&::after {
+		content: "\300d";
+	}
+}
+
+blockquote {
+	$size: ($default-indent - 1em);
+
+	@include default-margin;
+	position: relative;
+	min-height: $size;
+	overflow: visible;
+	clear: both;
+	color: #2aa198;
+	font-size: 1.15em;
+	font-weight: 200;
+
+	&::before {
+		@include icon($quote-left);
+		margin-right: 1em;
+		position: absolute;
+		top: 0;
+		right: 100%;
+		font-size: $size;
+		color: mix($fg, $bg, 10%);
+	}
+
+	cite {
+		$color: mix(#2aa198, $bg, 60%);
+
+		margin-left: .5em;
+		color: $color;
+
+		&::before {
+			@include inline-block;
+			content: '';
+			margin-right: .2em;
+			border-bottom: 1px solid $color;
+			width: .6em;
+			vertical-align: middle;
+		}
+	}
+}
+
+abbr {
+	cursor: help;
+}
+
+small {
+    font-size: 80%;
+}
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+ul,
+ol {
+	@include default-margin;
+
+	padding: 0 0 0 $default-indent;
+ 	clear: both;
+
+ 	ul,
+	ol {
+    	margin-top: 0;
+	}
+}
+
+dl {
+	@include default-margin;
+
+  clear: both;
+
+  dt {
+    font-weight: bold;
+  }
+
+  dd {
+    margin-left: $default-indent;
+  }
+
+  dl {
+    margin-top: 0;
+  }
+}
+
+address {
+	@include default-margin;
+}
+
+details {
+	@include default-margin;
+}
+
+article * {
+	max-width: 100%;
+}
+
+// Embedded content
+img {
+    border: 0;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+// Figure
+figure {
+	@include default-margin;
+}
+
+// Forms
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+}
+
+legend {
+    border: 0;
+    padding: 0;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0;
+}
+
+button,
+input {
+    line-height: normal;
+}
+
+button,
+select {
+    text-transform: none;
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer;
+}
+
+button[disabled],
+html input[disabled] {
+    cursor: default;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    @include box-sizing(border-box);
+    padding: 0;
+}
+
+input[type="search"] {
+    -webkit-appearance: textfield;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+textarea {
+    overflow: auto;
+    vertical-align: top;
+}
+
+// Tables
+table {
+	@include default-margin;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid $table-border-color;
+}
+
+caption {
+	margin-bottom: ($default-margin * 0.333);
+	font-weight: bold;
+}
+
+td, th {
+	padding: .1em .5em;
+	border: 1px solid $table-border-color;
+}
+
+th {
+	background-color: $table-th-bg;
+}
+
+// Horizon
+hr {
+	$color: mix($fg, $bg, 10%);
+
+	@include default-margin;
+	padding: 0;
+	border-width: 3px 0 0;
+	border-style: double;
+	border-color: $color;
+	color: $color;
+	text-align: center;
+	line-height: 1;
+
+	&::after {
+		@include inline-block;
+		content: "\A7";
+		position: relative;
+		top: -0.7em;
+		font-size: 1.5em;
+		padding: 0 .25em;
+		background-color: $bg;
+	}
+}
