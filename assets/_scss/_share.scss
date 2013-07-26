@@ -1,8 +1,15 @@
 article .share {
     @include default-margin;
 
+    * {
+        max-width: none;
+    }
+
     ul {
         @include inline-block-list;
+        @include pie-clearfix;
+
+        overflow: visible;
     }
 
     ul li {

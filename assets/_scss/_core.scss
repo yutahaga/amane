@@ -318,6 +318,10 @@ article * {
 	max-width: 100%;
 }
 
+.article-body {
+    @include pie-clearfix;
+}
+
 // Embedded content
 img {
     border: 0;

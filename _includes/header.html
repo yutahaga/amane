@@ -1,17 +1,18 @@
+{% capture page_description %}{% if page.description %}{{ page.description }}{% elsif page.type == "single" %}{{ page.content | markdownify | description | strip_html | regex_remove: "\r?\n" }}{% else %}{{ site.description }}{% endif %}{% endcapture %}
 <!doctype html>
-<html lang="{{ site.lang }}"{% if site.share.facebook %} xmlns:fb="http://ogp.me/ns/fb#"{% endif %}{% if site.microdata %} itemscope itemtype="http://schema.org/Blog"{% endif %}>
+<html lang="{{ site.lang }}"{% if site.share.facebook %} xmlns:fb="http://ogp.me/ns/fb#"{% endif %}{% if site.microdata %} itemscope itemtype="http://schema.org/Blog{% if page.type == "single" %}Posting{% endif %}"{% endif %}>
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+	<meta name="description" content="{{ page_description }}">
 	<title>{% if page.title != null %}{{ page.title }} - {% endif %}{{ site.title }}</title>
 	<link href="{{ site.path.asset }}/css/style.css" rel="stylesheet" media="all">
 	<link href="{{ site.path.atom }}" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
 	<link rel="shortcut icon" href="{{ site.baseurl }}favicon.ico">
 	<link rel="apple-touch-icon" href="{{ site.baseurl }}apple-touch-icon.png">
 	<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-{% if site.microdata %}
+{% if site.microdata and page.type != "single" %}
 	<!-- Microdata -->
 	<meta content="{{ site.title }}" itemprop="name">
 	<meta content="{{ site.description }}" itemprop="description">
@@ -19,11 +20,11 @@
 	<link href="{{ site.url }}" itemprop="url">
 {% endif %}{% if site.ogp %}
 	<!-- Open Graph Protocol -->
-	<meta property="og:title" content="{{ site.title }}">
-	<meta property="og:type" content="blog">
-	<meta property="og:url" content="{{ site.url }}">
-	{% if site.path.logo %}<meta property="og:image" content="{{ site.url }}{{ site.path.asset }}/images/{{ site.path.logo }}">{% endif %}
-	<meta property="og:description" content="{{ site.description }}">
+	<meta property="og:title" content="{% if page.title != null %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+	<meta property="og:type" content="{% if page.type != "single" %}blog{% else %}article{% endif %}">
+	<meta property="og:url" content="{{ site.url }}{{ page.url }}/">
+	{% if site.path.logo or page.thumbnail %}<meta property="og:image" content="{% if page.thumbnail %}{{ site.url }}{{ site.path.thumbnail }}/{{ page.thumbnail }}{% else %}{{ site.url }}{{ site.path.logo }}{% endif %}">{% endif %}
+	<meta property="og:description" content="{{ page_description }}">
 	<meta property="og:locale" content="{{ site.locale }}">
 	<meta property="og:site_name" content="{{ site.title }}">
 	<meta prefix="fb: http://ogp.me/ns/fb#" property="fb:admins" content="{{ site.fbAdminID }}">
@@ -32,6 +33,7 @@
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:creator" content="@{{ site.author.social.twitter }}">
 {% endif %}
+{% assign page_description = null %}
 {% include analytics.html %}
 </head>
 <body>

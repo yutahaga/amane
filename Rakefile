@@ -13,7 +13,7 @@ end
 
 desc 'Preview on local machine'
 task :preview do
-	jekyll('serve --watch')
+  jekyll('serve --watch')
 end
 
 desc 'Create a post'
@@ -26,9 +26,9 @@ task :post, [:slug, :date, :content] do |t, args|
   end
 
   post_slug = args.slug.gsub(' ', '_')
-  post_date = args.date || Time.new.strftime("%Y-%m-%d %H:%M:%S")
+  post_date = args.date || Time.new.strftime("%Y-%m-%dT%H:%M:%S%z")
 
-	filename = post_date[0..9] + "-" + post_slug + ".md"
+  filename = post_date[0..9] + "-" + post_slug + ".md"
 
   i = 1
   while File.exists?("_posts/" + filename) do
@@ -41,7 +41,7 @@ task :post, [:slug, :date, :content] do |t, args|
   post_path = "_posts/" + filename
   post_thumbnail = filename.gsub('.md', '.png')
 
-	if not File.exists?(post_path) then
+  if not File.exists?(post_path) then
       File.open(post_path, 'w') do |f|
         f.puts "---"
         f.puts "title: \"\""
@@ -51,6 +51,7 @@ task :post, [:slug, :date, :content] do |t, args|
         f.puts "tags: []"
         f.puts "thumbnail: #{post_thumbnail}"
         f.puts "thumbnail_pos: left"
+        f.puts "description: \"\""
         f.puts "---"
         f.puts args.content if args.content != nil
       end
@@ -73,7 +74,7 @@ task :page, [:slug, :date, :content] do |t, args|
   end
 
   page_slug = args.slug.gsub(' ', '_')
-  page_date = args.date || Time.new.strftime("%Y-%m-%d %H:%M:%S")
+  page_date = args.date || Time.new.strftime("%Y-%m-%dT%H:%M:%S%z")
 
   filename = page_slug + ".md"
 

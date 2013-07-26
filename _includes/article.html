@@ -8,8 +8,9 @@
 		{% elsif site.path.logo %}
 		<meta content="{{ site.path.logo }}" itemprop="image">
 		{% endif %}
+		<link href="{{ site.url}}{{ page.url }}" itemprop="url">
 	{% endif %}
-		<h2{% if site.microdata %} itemprop="name"{% endif %}>{% if type != "single" %}<a rel="bookmark" href="{{ site.url}}{{ page.url }}"{% if site.microdata %} itemprop="url"{% endif %}>{{ page.title }}</a>{% else %}{{ page.title }}{% endif %}</h2>
+		<h2{% if site.microdata %} itemprop="name"{% endif %}>{% if type != "single" %}<a rel="bookmark" href="{{ page.url }}">{{ page.title }}</a>{% else %}{{ page.title }}{% endif %}</h2>
 		{% if page.date or page.category == "true" %}
 		<ul class="meta-info">
 			{% if has_category == "true" %}
@@ -45,13 +46,7 @@
 		{{ page.content }}
 	{% endif %}
 	{% endcapture %}
-	{% if page.description %}
-		{% capture page_description %}
-		<p itemprop="description">
-{{ page.description }}
-		</p>
-		{% endcapture %}
-	{% elsif site.safe == false %}
+	{% if site.safe == false %}
 		{% capture page_has_description %}{{ raw_content | has_description }}{% endcapture %}
 		{% if page_has_description == "true" %}
 			{% capture page_description %}

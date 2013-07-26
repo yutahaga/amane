@@ -1,3 +1,15 @@
+.pull-left {
+    margin: $default-margin $default-margin 0 0;
+    float: left;
+    max-width: 33.33%;
+}
+
+.pull-right {
+    margin: $default-margin 0 0 $default-margin;
+    float: right;
+    max-width: 33.33%;
+}
+
 .well {
     @include border-radius(6px);
     padding: 1em em($golden-ratio);
