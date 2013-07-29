@@ -1,0 +1,70 @@
+[role="banner"] {
+  padding: $gap * 3 $gap;
+  text-align: center;
+  color: $header-fg;
+  background-color: $header-bg;
+  @if $image-header-bg {
+    background-image: $image-header-bg;
+  }
+  a {
+    color: $header-fg;
+    &:hover {
+      color: darken($header-bg, 40%);
+    }
+  }
+  h1 {
+    margin-top: 0;
+    font-family: $font-stack-body;
+    font-size: em($h3-ratio);
+    font-weight: 300;
+    @if $image-logo {
+      a {
+        @include replace-text-with-dimensions($image-logo);
+        @include inline-block;
+        &:hover {
+          opacity: .75;
+        }
+      }
+    }
+    @include mq-middle {
+      float: left;
+      font-size: em($h1-ratio);
+    }
+  }
+  nav {
+    @extend %default-margin;
+    ul {
+      @include inline-block-list;
+      font-family: $sans-serif;
+      font-weight: 200;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+    ul li::after {
+      @include inline-block;
+      @include border-radius(1em);
+      content: '';
+      margin: -3px .75em 0;
+      vertical-align: middle;
+      width: 5px;
+      height: 5px;
+      background-color: mix($header-fg, $header-bg, 40%);
+    }
+    ul li:last-child::after {
+      content: '';
+      display: none;
+    }
+    .active a {
+      color: darken($header-bg, 40%);
+      font-weight: 500;
+    }
+    @include mq-middle {
+      margin-top: $heading-line-height * ($h1-ratio - 1) * 0.5em;
+      float: right;
+    }
+  }
+  @include mq-middle {
+    @include pie-clearfix;
+    text-align: left;
+  }
+}

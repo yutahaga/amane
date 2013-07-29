@@ -1,60 +1,8 @@
-// Compass
-@import "compass";
-
-// Font Awesome
-@import "font-awesome/variables";
-@import "font-awesome/mixins";
-@import "font-awesome/path";
-
-// Function
-@import "function";
-
-// Variable
-@import "brandcolors";
-@import "color";
-@import "font";
-@import "size";
-@import "images";
-
-// Class
-@import "expand-block";
-@import "margin";
-@import "media-query";
-@import "wrapper";
-@import "placeholder";
-
-// Core
+@import "vender/scss-lib";
+@import "variables";
+@import "vender/font-awesome";
+@import "class";
+@import "utilities";
 @import "core";
-
-// Header
-@import "header";
-
-// Content
-@import "content";
-
-// Footer
-@import "footer";
-
-// Article
-@import "article-meta-info";
-@import "syntax";
-@import "comments";
-@import "share";
-
-// Pagination
-@import "pagination";
-
-// Complementary
-@import "complementary";
-@import "search";
-@import "nav";
-@import "elsewhere";
-
-// Not Found
-@import "not-found";
-
-// Utilities
-@import "utils";
-
-// Print
+@import "parts";
 @import "print";

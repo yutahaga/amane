@@ -1,4 +1,4 @@
-# amane v1.0.1
+# amane v1.1.0
 
 **amane** is a blog theme for [jekyll](http://jekyllrb.com/).
 

@@ -1,0 +1,5 @@
+.well {
+  @include border-radius(6px);
+  padding: 1em rhythm();
+  background-color: mix($fg, $bg, 5%);
+}
