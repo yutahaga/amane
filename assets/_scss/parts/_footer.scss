@@ -1,0 +1,9 @@
+[role="contentinfo"] {
+  margin-top: $h1-ratio * rhythm();
+  padding: $gap * 2 $gap;
+  background-color: mix($fg, $bg, 6%);
+}
+
+#copyright {
+  text-align: center;
+}

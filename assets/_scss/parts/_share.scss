@@ -1,0 +1,18 @@
+article .share {
+  @extend %default-margin;
+  * {
+    max-width: none;
+  }
+  ul {
+    @include inline-block-list;
+    @include pie-clearfix;
+    overflow: visible;
+  }
+  ul li {
+    vertical-align: top;
+    margin-right: .3em;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

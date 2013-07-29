@@ -1,0 +1,25 @@
+$base-ratio: $ratio-golden;
+
+// Line Height
+$heading-line-height: 1.25;
+$base-line-height: $base-font-size * $base-ratio;
+
+// Indent
+$default-indent: em(pow($base-ratio, 2));
+
+// Layout Size
+$gap: em($base-ratio);
+$gutter: em($base-ratio);
+$content-width: 40em;
+
+// Text Size
+$primary-text-size-ratio: $base-font-size / $browser-default-font-size;
+$secondary-text-size-ratio: 30px / $browser-default-font-size;
+
+// Heading Size
+$h1-ratio: $primary-text-size-ratio * pow($base-ratio, 2);
+$h2-ratio: $secondary-text-size-ratio;
+$h3-ratio: $primary-text-size-ratio * $base-ratio;
+$h4-ratio: $secondary-text-size-ratio / $base-ratio;
+$h5-ratio: $primary-text-size-ratio;
+$h6-ratio: $secondary-text-size-ratio / pow($base-ratio, 2);

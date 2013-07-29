@@ -1,0 +1,72 @@
+[role="complementary"] {
+  overflow: hidden;
+  h2 {
+    text-align: center;
+  }
+  h2::before {
+    @include icon-FontAwesome;
+    margin-right: .5em;
+  }
+  ul,
+  ol {
+    font-size: em(18 / 16);
+    padding-left: 0;
+    li a {
+      margin: 0 -#{$gap};
+      padding: 0.5em $gap * 2 + 1em 0.5em $gap;
+      display: block;
+      background-color: darken($bg, 3%);
+      position: relative;
+    }
+    li:nth-child(2n) a {
+      background-color: transparent;
+    }
+    li a:hover {
+      background-color: lighten($bg, 5%);
+    }
+    li a::after {
+      @include icon($chevron-right);
+      position: absolute;
+      top: 50%;
+      right: $gap;
+      margin-top: -0.75em;
+      color: mix($fg, $bg, 10%);
+    }
+    li a:hover::after {
+      color: mix($fg, $bg, 20%);
+    }
+    @include mq-middle {
+      li {
+        margin-bottom: .5em;
+      }
+      li:last-child {
+        margin-bottom: 0;
+      }
+      li a {
+        margin: 0;
+        padding: 0;
+        display: inline;
+      }
+      li a,
+      li a:hover {
+        background-color: transparent;
+      }
+      li a::after {
+        display: none;
+      }
+    }
+  }
+  ol {
+    list-style: none;
+  }
+  @include mq-middle {
+    h2 {
+      position: relative;
+      text-align: left;
+    }
+    h2::before {
+      position: absolute;
+      right: 100%;
+    }
+  }
+}

@@ -1,0 +1,7 @@
+.table-of-contents {
+  @extend .well;
+  list-style-position: inside;
+  a {
+    text-decoration: none;
+  }
+}

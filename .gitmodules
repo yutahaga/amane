@@ -1,0 +1,6 @@
+[submodule "assets/_scss/vender/scss-lib"]
+	path = assets/_scss/vender/scss-lib
+	url = git@github.com:yutahaga/scss-lib.git
+[submodule "assets/_scss/vender/font-awesome"]
+	path = assets/_scss/vender/font-awesome
+	url = git@github.com:yutahaga/Font-Awesome.git

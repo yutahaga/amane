@@ -1,64 +1,60 @@
 // Base
+* html {
+  font-size: 100% * $base-font-size / $browser-default-font-size;
+}
+
 html {
-	font-family: sans-serif;
-	font-size: 100%;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
+  font-family: sans-serif;
+  font-size: $base-font-size;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  @include adjust-leading-to(1);
+  @include mq-middle {
+    font-size: em($base-font-size * 1.125 / $browser-default-font-size);
+  }
 
-	@include mq-middle {
-		font-size: em(18/16);
-	}
-
-	@include mq-xlarge {
-		font-size: em(21/16);
-	}
+  @include mq-xlarge {
+    font-size: em($base-font-size * 1.3125 / $browser-default-font-size);
+  }
 }
 
 body {
-	margin: 0;
-	line-height: $default-line-height;
-	color: $fg;
-	background-color: $bg;
-	font-family: $font-stack-body;
+  margin: 0;
+  color: $fg;
+  background-color: $bg;
+  font-family: $font-stack-body;
 }
 
 // Links
 a {
-	color: $link;
-	background-color: transparent;
-	text-decoration: none;
-
-	&:visied {
-		color: $visited;
-	}
-
-	&:focus {
-		color: $focus;
-		outline: 1px dotted $focus;
-	}
-
-	&:active {
-		outline: 0;
-	}
-
-	&:hover {
-		color: $hover;
-		outline: 0;
-	}
-
-	section > p &,
-	article > p &,
-	.article-body & {
-		text-decoration: underline;
-	}
-
-	article > header > h2 & {
-		color: $accent;
-
-		&:hover {
-			color: $fg;
-		}
-	}
+  color: $color-link;
+  background-color: transparent;
+  text-decoration: none;
+  &:visied {
+    color: $color-visited;
+  }
+  &:focus {
+    color: $color-focus;
+    outline: 1px dotted $color-focus;
+  }
+  &:active {
+    outline: 0;
+  }
+  &:hover {
+    color: $color-hover;
+    outline: 0;
+  }
+  section > p &,
+  article > p &,
+  .article-body & {
+    text-decoration: underline;
+  }
+  article > header > h2 & {
+    color: $color-accent;
+    &:hover {
+      color: $fg;
+    }
+  }
 }
 
 // HTML5 display definitions
@@ -74,383 +70,364 @@ main,
 nav,
 section,
 summary {
-	display: block;
+  display: block;
 }
 
 audio,
 canvas,
 video {
-	display: inline-block;
+  display: inline-block;
 }
 
 audio:not([controls]) {
-	display: none;
-	height: 0;
+  display: none;
+  height: 0;
 }
 
 [hidden] {
-	display: none;
+  display: none;
 }
 
 // Heading
-@mixin heading ($ratio, $margin) {
-	margin: ($margin / $ratio) 0 0 0;
-	line-height: $heading-line-height;
-	font-size: em($ratio);
+@mixin heading($ratio, $margin) {
+  margin: $margin / $ratio 0 0 0;
+  line-height: $heading-line-height;
+  font-size: em($ratio);
 }
 
 h1 {
-	@include heading($h1-ratio, $default-margin);
+  @include heading($h1-ratio, rhythm());
 }
 
 h2 {
-	@include heading($h2-ratio, $primary-heading-margin);
+  @include heading($h2-ratio, rhythm(4));
 }
 
 h3 {
-	@include heading($h3-ratio, $heading-margin);
+  @include heading($h3-ratio, rhythm(2));
 }
 
 h4 {
-	@include heading($h4-ratio, $heading-margin);
+  @include heading($h4-ratio, rhythm(2));
 }
 
 h5 {
-	@include heading($h5-ratio, $heading-margin);
+  @include heading($h5-ratio, rhythm(2));
 }
 
 h6 {
-	@include heading($h6-ratio, $heading-margin);
+  @include heading($h6-ratio, rhythm(2));
 }
 
 // Typography
 p {
-  @include default-margin;
-
+  @extend %default-margin;
   h3 + &,
   h4 + &,
   h5 + &,
   h6 + & {
-    @include mini-margin;
+    @exntend %mini-margin;
   }
 }
 
 abbr[title] {
-    border-bottom: 1px dotted;
+  border-bottom: 1px dotted;
 }
 
 b,
 strong,
 em {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 strong {
-	border-bottom: 1px dashed $fg;
+  border-bottom: 1px dashed $fg;
 }
 
 em {
-	font-style: normal;
+  font-style: normal;
 }
 
 dfn {
-    font-style: italic;
+  font-style: italic;
 }
 
 hr {
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-    height: 0;
+  @include box-sizing(content-box);
+  height: 0;
 }
 
 mark {
-    background: #ff0;
-    color: #000;
+  background: $color-mark;
+  color: #000;
 }
 
 code,
 kbd,
 var,
 samp {
-    font-family: $font-stack-code;
-    font-size: 1em;
+  font-family: $font-stack-code;
+  font-size: 1em;
 }
 
 code {
-	@include border-radius(3px);
-	padding: 1px .3em;
-	color: $accent;
-	background-color: lighten($bg, 5%);
+  @include border-radius(3px);
+  padding: 1px .3em;
+  color: $color-accent;
+  background-color: $color-code;
 }
 
 pre {
-	@include expand-block;
-	@include border-radius(6px);
-    white-space: pre-wrap;
-	background-color: darken($bg, 3%);
-
-	> code {
-		padding: 0;
-		color: $fg;
-		background-color: transparent;
-	}
+  @include expand-block;
+  @include border-radius(6px);
+  @include force-wrap;
+  background-color: darken($bg, 3%);
+  > code {
+    padding: 0;
+    color: $fg;
+    background-color: transparent;
+  }
 }
 
 cite {
-	font-style: normal;
+  font-style: normal;
 }
 
 q {
-	quotes: none;
-
-	&::before {
-		content: "\300c";
-	}
-
-	&::after {
-		content: "\300d";
-	}
+  quotes: none;
+  &::before {
+    content: "\300c";
+  }
+  &::after {
+    content: "\300d";
+  }
 }
 
 blockquote {
-	$size: ($default-indent - 1em);
-
-	@include default-margin;
-	position: relative;
-	min-height: $size;
-	overflow: visible;
-	clear: both;
-	color: #2aa198;
-	font-size: 1.15em;
-	font-weight: 200;
-
-	&::before {
-		@include icon($quote-left);
-		margin-right: 1em;
-		position: absolute;
-		top: 0;
-		right: 100%;
-		font-size: $size;
-		color: mix($fg, $bg, 10%);
-	}
-
-	cite {
-		$color: mix(#2aa198, $bg, 60%);
-
-		margin-left: .5em;
-		color: $color;
-
-		&::before {
-			@include inline-block;
-			content: '';
-			margin-right: .2em;
-			border-bottom: 1px solid $color;
-			width: .6em;
-			vertical-align: middle;
-		}
-	}
+  $size: $default-indent - 1em;
+  $color: good-color(green, $bg);
+  @extend %default-margin;
+  position: relative;
+  min-height: $size;
+  overflow: visible;
+  clear: both;
+  color: $color;
+  font-size: 1.15em;
+  font-weight: 200;
+  &::before {
+    @include icon($quote-left);
+    margin-right: 1em;
+    position: absolute;
+    top: 0;
+    right: 100%;
+    font-size: $size;
+    color: mix($fg, $bg, 10%);
+  }
+  cite {
+    $color: mix($color, $bg, 60%);
+    margin-left: .5em;
+    color: $color;
+    &::before {
+      @include inline-block;
+      content: '';
+      margin-right: .2em;
+      border-bottom: 1px solid $color;
+      width: .6em;
+      vertical-align: middle;
+    }
+  }
 }
 
 abbr {
-	cursor: help;
+  cursor: help;
 }
 
 small {
-    font-size: 80%;
+  font-size: 80%;
 }
 
 sub,
 sup {
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
 }
 
 sup {
-    top: -0.5em;
+  top: -0.5em;
 }
 
 sub {
-    bottom: -0.25em;
+  bottom: -0.25em;
 }
 
 ul,
 ol {
-	@include default-margin;
-
-	padding: 0 0 0 $default-indent;
- 	clear: both;
-
- 	ul,
-	ol {
-    	margin-top: 0;
-	}
+  @extend %default-margin;
+  padding: 0 0 0 $default-indent;
+  clear: both;
+  ul,
+  ol {
+    margin-top: 0;
+  }
 }
 
 dl {
-	@include default-margin;
-
+  @extend %default-margin;
   clear: both;
-
   dt {
     font-weight: bold;
   }
-
   dd {
     margin-left: $default-indent;
   }
-
   dl {
     margin-top: 0;
   }
 }
 
 address {
-	@include default-margin;
+  @extend %default-margin;
 }
 
 details {
-	@include default-margin;
+  @extend %default-margin;
 }
 
 article * {
-	max-width: 100%;
+  max-width: 100%;
 }
 
 .article-body {
-    @include pie-clearfix;
+  @include pie-clearfix;
 }
 
 // Embedded content
 img {
-    border: 0;
+  border: 0;
 }
 
 svg:not(:root) {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 // Figure
 figure {
-	@include default-margin;
+  @extend %default-margin;
 }
 
 // Forms
 fieldset {
-    border: 1px solid #c0c0c0;
-    margin: 0 2px;
-    padding: 0.35em 0.625em 0.75em;
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
 }
 
 legend {
-    border: 0;
-    padding: 0;
+  border: 0;
+  padding: 0;
 }
 
 button,
 input,
 select,
 textarea {
-    font-family: inherit;
-    font-size: 100%;
-    margin: 0;
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0;
 }
 
 button,
 input {
-    line-height: normal;
+  line-height: normal;
 }
 
 button,
 select {
-    text-transform: none;
+  text-transform: none;
 }
 
 button,
 html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-    -webkit-appearance: button;
-    cursor: pointer;
+  -webkit-appearance: button;
+  cursor: pointer;
 }
 
 button[disabled],
 html input[disabled] {
-    cursor: default;
+  cursor: default;
 }
 
 input[type="checkbox"],
 input[type="radio"] {
-    @include box-sizing(border-box);
-    padding: 0;
+  @include box-sizing(border-box);
+  padding: 0;
 }
 
 input[type="search"] {
-    -webkit-appearance: textfield;
-    -moz-box-sizing: content-box;
-    -webkit-box-sizing: content-box;
-    box-sizing: content-box;
+  -webkit-appearance: textfield;
+  @include box-sizing(content-box);
 }
 
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
-    -webkit-appearance: none;
+  -webkit-appearance: none;
 }
 
 button::-moz-focus-inner,
 input::-moz-focus-inner {
-    border: 0;
-    padding: 0;
+  border: 0;
+  padding: 0;
 }
 
 textarea {
-    overflow: auto;
-    vertical-align: top;
+  overflow: auto;
+  vertical-align: top;
 }
 
 // Tables
 table {
-	@include default-margin;
-    border-collapse: collapse;
-    border-spacing: 0;
-    border: 1px solid $table-border-color;
+  @extend %default-margin;
+  @include outer-table-borders(1px, $table-border-color);
+  @include inner-table-borders(1px, $table-border-color);
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 caption {
-	margin-bottom: ($default-margin * 0.333);
-	font-weight: bold;
+  margin-bottom: rhythm() * 0.333;
+  font-weight: bold;
 }
 
 td, th {
-	padding: .1em .5em;
-	border: 1px solid $table-border-color;
+  padding: .1em .5em;
 }
 
 th {
-	background-color: $table-th-bg;
+  background-color: $table-th-bg;
 }
 
 // Horizon
 hr {
-	$color: mix($fg, $bg, 10%);
-
-	@include default-margin;
-	padding: 0;
-	border-width: 3px 0 0;
-	border-style: double;
-	border-color: $color;
-	color: $color;
-	text-align: center;
-	line-height: 1;
-
-	&::after {
-		@include inline-block;
-		content: "\A7";
-		position: relative;
-		top: -0.7em;
-		font-size: 1.5em;
-		padding: 0 .25em;
-		background-color: $bg;
-	}
+  $color: mix($fg, $bg, 10%);
+  @extend %default-margin;
+  padding: 0;
+  border-width: 3px 0 0;
+  border-style: double;
+  border-color: $color;
+  color: $color;
+  text-align: center;
+  line-height: 1;
+  &::after {
+    @include inline-block;
+    content: "\A7";
+    position: relative;
+    top: -0.7em;
+    font-size: 1.5em;
+    padding: 0 .25em;
+    background-color: $bg;
+  }
 }

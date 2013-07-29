@@ -1,0 +1,17 @@
+@mixin mq-middle($width: 49.5em) {
+  @media screen and (min-width: $width) {
+    @content;
+  }
+}
+
+@mixin mq-large($width: 66em) {
+  @media screen and (min-width: $width) {
+    @content;
+  }
+}
+
+@mixin mq-xlarge($width: 85em) {
+  @media screen and (min-width: $width) {
+    @content;
+  }
+}

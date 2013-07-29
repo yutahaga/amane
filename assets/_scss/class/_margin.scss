@@ -1,0 +1,17 @@
+// Default Margin
+@mixin default-margin {
+  margin: rhythm() 0 0 0;
+}
+
+// Mini Margin
+@mixin mini-margin {
+  margin: rhythm() * 0.333 0 0 0;
+}
+
+%default-margin {
+  @include default-margin;
+}
+
+%mini-margin {
+  @include mini-margin;
+}

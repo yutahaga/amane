@@ -1,3 +1,6 @@
+## v1.1.0
+- change the arrangement of SCSS files
+
 ## v1.0.1
 - fixed the fault of
     - thumbnail

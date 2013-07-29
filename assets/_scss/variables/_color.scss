@@ -1,0 +1,25 @@
+// Basic
+$fg: #3e3e1f;
+$bg: #f7f7ef;
+$base: #268bd2;
+$darkest: darken($base, 10%);
+$dark: darken($base, 5%);
+$light: lighten($base, 5%);
+$lightest: lighten($base, 10%);
+$color-accent: #e35655;
+
+// Semantic
+$color-link: $base;
+$color-visited: $dark;
+$color-focus: $lightest;
+$color-hover: $darkest;
+$color-mark: rgb(255, 238, 0);
+$color-code: lighten($bg, 5%);
+
+// Header
+$header-fg: white;
+$header-bg: #9fd1da;
+
+// Table
+$table-border-color: mix($fg, $bg, 10%);
+$table-th-bg: mix($fg, $bg, 5%);
